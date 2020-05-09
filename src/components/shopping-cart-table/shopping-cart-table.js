@@ -1,7 +1,8 @@
 import React from "react";
 import './shopping-cart-table.css';
+import {connect} from 'react-redux';
 
-const ShoppingCartTable = () => {
+const ShoppingCartTable = ({items, total, onIncrease, onDecrease, onDelete}) => {
 
     return (
         <div className="shopping-cart-table">
@@ -12,36 +13,70 @@ const ShoppingCartTable = () => {
                         <th>#</th>
                         <th>Item</th>
                         <th>Count</th>
-                        <th>Price</th>
+                        <th>Total</th>
                         <th>Action</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Site relability Engeneering</td>
-                        <td>2</td>
-                        <td>$40</td>
-                        <td>
-                            <button className="btn btn-outline-danger btn-sm float-right">
-                                <i className="fa fa-trash-o"/>
-                            </button>
-                            <button className="btn btn-outline-success btn-sm float-right">
-                                <i className="fa fa-plus-circle"/>
-                            </button>
-                            <button className="btn btn-outline-warning btn-sm float-right">
-                                <i className="fa fa-minus-circle"/>
-                            </button>
-                        </td>
-                    </tr>
+                {
+                    items.map((item, idx) => {
+                        const {id, title, count, total} = item;
+                        return (
+                            <tr key={id}>
+                                <td>{idx + 1}</td>
+                                <td>{title}</td>
+                                <td>{count}</td>
+                                <td>{total}</td>
+                                <td>
+                                    <button
+                                        onClick={() => onDelete(id)}
+                                        className="btn btn-outline-danger btn-sm float-right">
+                                        <i className="fa fa-trash-o"/>
+                                    </button>
+                                    <button
+                                        onClick={() => onIncrease(id)}
+                                        className="btn btn-outline-success btn-sm float-right">
+                                        <i className="fa fa-plus-circle"/>
+                                    </button>
+                                    <button
+                                        onClick={() => onDecrease(id)}
+                                        className="btn btn-outline-warning btn-sm float-right">
+                                        <i className="fa fa-minus-circle"/>
+                                    </button>
+                                </td>
+                            </tr>
+                        )
+                    })
+                }
                 </tbody>
             </table>
             <div className="total">
-                Total: 300$
+                Total: ${total}
             </div>
         </div>
     )
 };
 
-export default ShoppingCartTable;
+const mapStateToProps = ({cartItems, orderTotal}) => {
+    return {
+        items: cartItems,
+        total: orderTotal
+    };
+};
+
+const mapDispatchToProps = () => {
+    return {
+        onIncrease: (id) => {
+            console.log('Increase',id)
+        },
+        onDecrease: (id) => {
+            console.log('Decrease',id)
+        },
+        onDelete: (id) => {
+            console.log('Deleted',id)
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable);
