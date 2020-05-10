@@ -25,6 +25,20 @@ const bookAddedToCart = (bookId) => {
     }
 };
 
+const allBooksRemovedFromCart = (bookId) => {
+    return {
+        type: 'ALL_BOOKS_REMOVED_FROM_CART',
+        payload: bookId
+    }
+};
+
+const bookRemovedFromCArt = (bookId) => {
+    return {
+        type: 'BOOK_REMOVED_FROM_CART',
+        payload: bookId
+    }
+}
+
 const fetchBooks = (bookstoreService, dispatch) => async () => {
     try {
         dispatch(booksRequested());
@@ -37,5 +51,7 @@ const fetchBooks = (bookstoreService, dispatch) => async () => {
 
 export {
     fetchBooks,
-    bookAddedToCart
+    bookAddedToCart,
+    allBooksRemovedFromCart,
+    bookRemovedFromCArt
 };
