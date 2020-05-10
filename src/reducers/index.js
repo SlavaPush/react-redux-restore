@@ -84,7 +84,6 @@ const reducer = (state = initialState, action) => {
             const item = state.cartItems.find(({id}) => id === action.payload);
             return updateOrder(state, action.payload, -item.count);
 
-
         default:
             return state;
     }
