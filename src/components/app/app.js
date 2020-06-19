@@ -10,7 +10,7 @@ export default class App extends Component {
     render() {
         return (
             <main role="main" className="container">
-                <ShopHeader numItems={5} total={300}/>
+                <ShopHeader/>
                 <Switch>
                     <Route path="/" component={HomePage} exact/>
                     <Route path="/cart" component={CartPage}/>

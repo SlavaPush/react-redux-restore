@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 
 import withBookStoreService from "../hoc";
 import {fetchBooks, bookAddedToCart} from "../../actions";
-import {compose} from '../../utils';
+// import {compose} from '../../utils';
 import './book-list.css';
 import ErrorIndicator from "../error-indicator";
 
@@ -65,9 +65,16 @@ const mapDispatchToProps = (dispatch, {bookstoreService}) => {
     }, dispatch);
 };
 
-export default compose(
-    withBookStoreService(),
-    connect(mapStateToProps, mapDispatchToProps)
-)(BookListContainer);
+export default
+  withBookStoreService()(
+    connect(mapStateToProps, mapDispatchToProps)(
+      BookListContainer
+    )
+  )
+  
+// export default compose(
+//     withBookStoreService(),
+//     connect(mapStateToProps, mapDispatchToProps)
+// )(BookListContainer);
 
 

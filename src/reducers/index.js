@@ -3,7 +3,7 @@ const initialState = {
     loading: true,
     error: null,
     cartItems: [],
-    orderTotal: 300
+    orderTotal: 0
 };
 
 const updateCartItems = (cartItems, item, idx) => {
@@ -39,16 +39,21 @@ const updateCartItem = (book, item = {}, quantity) => {
         total: total + quantity * book.price
     };
 };
+const updateOrderTotal = (cart) => {
+  return cart.reduce((acc, item) => acc + item.total ,0)
+};
 const updateOrder = (state, bookId, quantity) => {
     const {books, cartItems} = state;
     const book = books.find(({id}) => id === bookId);
     const itemIndex = cartItems.findIndex(({id}) => id === bookId);
     const item = cartItems[itemIndex];
     const newItem = updateCartItem(book, item, quantity);
+    const newCartItems = updateCartItems(cartItems, newItem, itemIndex)
 
     return {
         ...state,
-        cartItems: updateCartItems(cartItems, newItem, itemIndex),
+        cartItems: newCartItems,
+        orderTotal: updateOrderTotal(newCartItems)
     };
 };
 

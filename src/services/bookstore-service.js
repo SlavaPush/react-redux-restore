@@ -14,7 +14,21 @@ export default class BookstoreService {
             author: 'Marijn Haverbeke',
             price: 150,
             coverImage: 'https://eloquentjavascript.net/img/cover.jpg'
-        }
+        },
+        {
+          id: 3,
+          title: 'JavaScript',
+          author: 'David Flanagan',
+          price: 250,
+          coverImage: 'https://images-na.ssl-images-amazon.com/images/I/71WzJARrAwL.jpg'
+        },
+        {
+          id: 4,
+          title: 'JavaScript: Design Patterns',
+          author: 'Eddy Osmany',
+          price: 300,
+          coverImage: 'https://akamaicovers.oreilly.com/images/0636920025832/lrg.jpg'
+        },
     ];
 
     getBooks() {

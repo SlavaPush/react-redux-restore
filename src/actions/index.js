@@ -39,15 +39,15 @@ const bookRemovedFromCArt = (bookId) => {
     }
 }
 
-const fetchBooksOld = (bookstoreService, dispatch) => async () => {
-    try {
-        dispatch(booksRequested());
-        const data = await bookstoreService.getBooks();
-        dispatch(booksLoaded(data))
-    } catch (e) {
-        dispatch(booksError(e))
-    }
-};
+// const fetchBooksOld = (bookstoreService, dispatch) => async () => {
+//     try {
+//         dispatch(booksRequested());
+//         const data = await bookstoreService.getBooks();
+//         dispatch(booksLoaded(data))
+//     } catch (e) {
+//         dispatch(booksError(e))
+//     }
+// };
 
 const fetchBooks = (bookstoreService) => () => async (dispatch) => {
     try {

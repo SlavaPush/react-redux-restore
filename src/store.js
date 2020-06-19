@@ -3,10 +3,10 @@ import thunkMiddleWare from 'redux-thunk';
 
 import reducer from "./reducers";
 
-const logMiddleware = () => (next) => (action) => {
-    console.log(action.type, store.getState());
-    return next(action);
-};
+// const logMiddleware = () => (next) => (action) => {
+//     console.log(action.type, store.getState());
+//     return next(action);
+// };
 
 const stringMiddleware = () => (next) => (action) => {
     if(typeof action === 'string') {
@@ -18,7 +18,7 @@ const stringMiddleware = () => (next) => (action) => {
 };
 
 const store = createStore(reducer, applyMiddleware(
-    thunkMiddleWare, stringMiddleware, logMiddleware));
+    thunkMiddleWare, stringMiddleware));
 
 store.dispatch('HELLO_WORLD');
 
