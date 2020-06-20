@@ -14,5 +14,5 @@
 
 ## Запустить локально
 
-- cd client && npm install && npm start
+- npm install && npm run dev
 - [http://localhost:3000](http://localhost:3000/)
