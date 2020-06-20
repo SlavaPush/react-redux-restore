@@ -53,9 +53,9 @@ const fetchBooks = (bookstoreService) => () => async (dispatch) => {
     try {
         dispatch(booksRequested());
         const data = await bookstoreService.getBooks();
-        dispatch(booksLoaded(data))
+        dispatch(booksLoaded(data));
     } catch (e) {
-        dispatch(booksError(e))
+        dispatch(booksError(e));
     }
 };
 

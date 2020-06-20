@@ -12,8 +12,8 @@ export default class App extends Component {
             <main role="main" className="container">
                 <ShopHeader/>
                 <Switch>
-                    <Route path="/" component={HomePage} exact/>
                     <Route path="/cart" component={CartPage}/>
+                    <Route path="/" component={HomePage}/>
                 </Switch>
             </main>
         )
